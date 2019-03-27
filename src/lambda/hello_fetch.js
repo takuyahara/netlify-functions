@@ -6,9 +6,15 @@ const API_ENDPOINT =
 exports.handler = async (event, context) => {
   return fetch(API_ENDPOINT)
     .then(response => response.json())
-    .then(data => ({
-      statusCode: 200,
-      body: `${JSON.stringify(data)} *BA DUM TSSS*`
-    }))
+    .then(data => {
+      const newData = data.component.measures.map(d => ({
+        metric: d.metric,
+        value: d.periods ? d.periods.value : d.value
+      }));
+      return {
+        statusCode: 200,
+        body: `${JSON.stringify(data)}`
+      }
+    })
     .catch(error => ({ statusCode: 422, body: String(error) }));
 };
