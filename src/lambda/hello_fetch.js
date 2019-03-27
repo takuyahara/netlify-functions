@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
       }));
       return {
         statusCode: 200,
-        body: `${JSON.stringify(data)}`
+        body: `${JSON.stringify(newData)}`
       }
     })
     .catch(error => ({ statusCode: 422, body: String(error) }));
