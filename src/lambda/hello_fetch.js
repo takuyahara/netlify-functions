@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     .then(data => {
       const newData = {};
       data.component.measures.forEach(obj => {
-        newData[obj.metric] = d.periods ? d.periods[0].value : d.value;
+        newData[obj.metric] = obj.periods ? obj.periods[0].value : obj.value;
       });
       return {
         statusCode: 200,
