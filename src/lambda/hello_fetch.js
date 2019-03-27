@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     .then(data => {
       const newData = data.component.measures.map(d => ({
         metric: d.metric,
-        value: d.periods ? d.periods.value : d.value
+        value: d.periods ? d.periods[0].value : d.value
       }));
       return {
         statusCode: 200,
