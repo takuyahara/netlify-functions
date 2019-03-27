@@ -7,10 +7,10 @@ exports.handler = async (event, context) => {
   return fetch(API_ENDPOINT)
     .then(response => response.json())
     .then(data => {
-      const newData = data.component.measures.map(d => ({
-        metric: d.metric,
-        value: d.periods ? d.periods[0].value : d.value
-      }));
+      const newData = {};
+      data.component.measures.forEach(obj => {
+        newData[obj.metric] = d.periods ? d.periods[0].value : d.value;
+      });
       return {
         statusCode: 200,
         body: `${JSON.stringify(newData)}`
